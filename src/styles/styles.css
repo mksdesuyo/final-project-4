@@ -1,0 +1,28 @@
+.arrow-class {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+}
+
+.arrow {
+    width: 60px;
+    background-color: #1f93dc;
+}
+
+.cuaca {
+    background-color: #1f93dc;
+    width: 16.5rem;
+}
+
+#icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+#atas {
+    background-color: #5e839a;
+}
+
+#bawah {
+    background-color: #DCDCDC;
+}

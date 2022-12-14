@@ -6,6 +6,7 @@ let weather = {
     )
       .then((response) => response.json())
       .then((data) => weather.displayWeather(data))
+    console.log(response);
   },
   displayWeather: (data) => {
     const { name } = data
