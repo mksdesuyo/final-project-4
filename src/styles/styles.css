@@ -26,3 +26,12 @@
 #bawah {
     background-color: #DCDCDC;
 }
+
+#map {
+    height: 50vh;
+    width: 50%;
+}
+
+.leaflet-popup-content-wrapper {
+    width: 100%;
+}
