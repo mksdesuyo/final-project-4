@@ -1,3 +1,10 @@
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(showPosition);
+} else {
+  document.getElementById("demo").innerHTML =
+    "Geolocation is not supported by this browser.";
+}
+
 let weather = {
   apiKey: "351a04d4c36615d6cf9abc08a96b4615",
   getWeather: (city) => {
@@ -6,7 +13,6 @@ let weather = {
     )
       .then((response) => response.json())
       .then((data) => weather.displayWeather(data))
-    console.log(response);
   },
   displayWeather: (data) => {
     const { name } = data
@@ -25,6 +31,22 @@ let weather = {
     weather.getWeather(document.querySelector("#searchInput").value)
   }
 };
+
+function showPosition(position) {
+  let lat = position.coords.latitude;
+  let long = position.coords.longitude;
+
+  console.log(lat, long);
+  generateMap(lat, long);
+
+  fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${weather.apiKey}&units=metric`
+  )
+    .then((response) => response.json())
+    .then((data) => weather.displayWeather(data))
+}
+
+
 
 document.querySelector("#search").addEventListener("click", () => {
   Swal.fire({
@@ -50,3 +72,50 @@ document.querySelector("#search").addEventListener("click", () => {
   })
   setTimeout(weather.search, 1000)
 })
+
+let map = null,
+  marker = null;
+
+function generateMap(lat, long) {
+  // Initialize the map and assign it to a variable for later use
+  // there's a few ways to declare a VARIABLE in javascript.
+  // you might also see people declaring variables using `const` and `let`
+  if (!map) {
+    map = L.map('map', {
+      // Set latitude and longitude of the map center (required)
+      center: [lat, long],
+      // Set the initial zoom level, values 0-18, where 0 is most zoomed-out (required)
+      zoom: 11
+    });
+  } else {
+    map.setView([lat, long], 11);
+  }
+
+
+  // Create a Tile Layer and add it to the map
+  var tiles = new L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    minZoom: '8'
+  }).addTo(map);
+
+  marker = L.marker(
+    [lat, long],
+    {
+      draggable: true,
+      title: "",
+      opacity: 0.75
+    });
+
+  marker.addTo(map);
+  marker.on('dragend', function (e) {
+    lat = e.target._latlng.lat;
+    lng = e.target._latlng.lng;
+
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${weather.apiKey}&units=metric`
+    )
+      .then((response) => response.json())
+      .then((data) => weather.displayWeather(data))
+  })
+}
+
