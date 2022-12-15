@@ -15,11 +15,11 @@
 </head>
 
 <body>
-  <header class="sticky-top">
+  <header>
     <nav class="navbar shadow-sm" id="atas">
       <div class="container-fluid px-3">
         <a class="navbar-brand text-white" href="#navbar">Weather</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+        <button class="navbar-toggler nav-tgl-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -59,9 +59,8 @@
     </nav>
   </header>
   <main>
-    <div class="bg-primary text-white" id="navbar" style="height: 20rem;">
-      <img src="src/images/608f7e769f6c378e7df9c45dbd2af1c8.jpg" alt="Indonesia Map Image"
-        style="height: 20rem; width: 100%; opacity: 75%;">
+    <div class="bg-transparent" id="navbar">
+      <div id="map"></div>
     </div>
 
     <section>
@@ -69,7 +68,7 @@
         <div class="card-body py-4">
           <h1 class="card-title fs-3">Prediksi Cuaca di Seluruh Indonesia</h1>
           <form class="input-group input-group-lg mb-3">
-            <input id="searchInput" type="text" class="form-control" placeholder="Masukkan Kota">
+            <input id="searchInput" type="text" name="searchInput" class="form-control" placeholder="Masukkan Kota">
             <button id="search" class="btn btn-outline-secondary" type="button"><i class="bi bi-search" width="20px"
                 height="20px"></i></button>
           </form>
@@ -83,11 +82,10 @@
           <div class="text-center mx-auto">
             <h2>Menampilkan Cuaca Di <span id="city">...</span></h2>
           </div>
-          <div id="map"></div>
           <div>
             <div class="container p-3 text-center border-bottom">
-              <div class="row row-cols-2 row-cols-md-4 mb-3 text-center">
-                <div class="col-sm-12 d-flex">
+              <div class="row mb-3 text-center">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 d-flex">
                   <div class="card mb-4 rounded-3 shadow cuaca align-items-stretch">
                     <div class="card-body">
                       <div class="d-flex justify-content-center align-items-center mb-3">
@@ -105,7 +103,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-12 d-flex">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 d-flex">
                   <div class="card mb-4 rounded-3 shadow cuaca align-items-stretch">
                     <div class="card-body">
                       <div class="d-flex justify-content-center align-items-center mb-3">
@@ -118,7 +116,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-12 d-flex">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 d-flex">
                   <div class="card mb-4 rounded-3 shadow cuaca align-items-stretch">
                     <div class="card-body">
                       <div class="d-flex justify-content-center align-items-center mb-3">
@@ -131,7 +129,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-12 d-flex">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 d-flex">
                   <div class="card mb-4 rounded-3 shadow cuaca align-items-stretch">
                     <div class="card-body">
                       <div class="d-flex justify-content-center align-items-center mb-3">
@@ -172,7 +170,7 @@
       </div>
     </section>
     <div class="arrow-class">
-      <a href="#navbar"><img src="src/images/arrow-symbol-27365.png" alt="panah" class="arrow rounded-4 shadow"></a>
+      <a href="#atas"><img src="src/images/arrow-symbol-27365.png" alt="panah" class="arrow rounded-4 shadow"></a>
     </div>
   </main>
 

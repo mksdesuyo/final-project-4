@@ -46,13 +46,15 @@ function showPosition(position) {
     .then((data) => weather.displayWeather(data))
 }
 
-
+let eraseField = () => {
+  document.getElementsByName("searchInput")[0].value = ''
+}
 
 document.querySelector("#search").addEventListener("click", () => {
   Swal.fire({
     title: 'Mencari data',
     html: 'Mohon tunggu <b></b> milliseconds.',
-    timer: 1000,
+    timer: 750,
     timerProgressBar: true,
     didOpen: () => {
       Swal.showLoading()
@@ -70,7 +72,8 @@ document.querySelector("#search").addEventListener("click", () => {
       console.log('I was closed by the timer')
     }
   })
-  setTimeout(weather.search, 1000)
+  setTimeout(weather.search, 750)
+  setTimeout(eraseField, 1000)
 })
 
 let map = null,
