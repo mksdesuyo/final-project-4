@@ -44,6 +44,7 @@ function showPosition(position) {
   )
     .then((response) => response.json())
     .then((data) => weather.displayWeather(data))
+
 }
 
 let eraseField = () => {
